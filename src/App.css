@@ -1,0 +1,10 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.task-container{
+  padding-top: 4rem;
+  width: 400px;
+  margin: 0 auto;
+}

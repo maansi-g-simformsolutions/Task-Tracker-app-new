@@ -22,7 +22,7 @@ export default function App() {
   }
 
   useEffect(() => {
-    db.collection('tasks').onSnapshot(snapshot => {
+    db.collection('tasks').orderBy('timestamp', 'desc').onSnapshot(snapshot => {
       setTasks(snapshot.docs.map(doc => ({
         id: doc.id,
         task: doc.data().task

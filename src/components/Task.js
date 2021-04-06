@@ -9,7 +9,7 @@ const Task = (props) => {
       {
         <ListItem>
         <ListItemText
-          primary={props.text}
+          primary={props.task.task}
           secondary='Deadline'
         />
       </ListItem>

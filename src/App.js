@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import {TextField, Button } from "@material-ui/core";
 import Task from './components/Task';
 import "./App.css";
 import './styles.css';
+import db from './firebase';
+import firebase from 'firebase';
 
 export default function App() {
 
@@ -11,9 +13,22 @@ export default function App() {
 
   const addTasks = (event) => {
     event.preventDefault();
-    setTasks([...tasks, input]);
+    
+    db.collection('tasks').add({
+      task: input,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    })
     setInput('');
   }
+
+  useEffect(() => {
+    db.collection('tasks').onSnapshot(snapshot => {
+      setTasks(snapshot.docs.map(doc => ({
+        id: doc.id,
+        task: doc.data().task
+      })))
+    })
+  }, [])
 
   return (
     <div class="area" >
@@ -41,7 +56,7 @@ export default function App() {
         </Button>
         </form>
         {
-          tasks.map(task => <Task text={task}/>)
+          tasks.map(task => <Task task={task}/>)
         }
       </div>
     </div>

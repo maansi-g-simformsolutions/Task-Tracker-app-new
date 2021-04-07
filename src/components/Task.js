@@ -38,6 +38,13 @@ const Task = (props) => {
     setOpen(false);
   };
 
+  const updateTask = () => {
+    db.collection('tasks').doc(props.task.id).set({
+      task: input
+    }, {merge: true})
+    setOpen(false);
+  }
+
   return(
     <div className='task-set'>
       {
@@ -73,14 +80,16 @@ const Task = (props) => {
           timeout: 500,
         }}
       >
-        <Fade in={open}>
+        <Fade in={open} style={{border: 'white'}}>
           <div className={classes.paper}>
             <h2 id="transition-modal-title">Update your Task</h2>
             <p id="transition-modal-description"><TextField 
              value={input}
              placeholder={props.task.task}
              onChange={event => setInput(event.target.value)} /></p>
-            <Button variant='contained'>UPDATE</Button>
+            <Button variant='contained' 
+            style={{background: '#4cd137', border: '1px solid #4cd137'}}
+            onClick={updateTask}>UPDATE</Button>
         </div>
         </Fade>
       </Modal>

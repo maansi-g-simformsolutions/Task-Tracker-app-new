@@ -1,5 +1,5 @@
-import React from 'react';
-import {ListItemText, ListItem, Button} from '@material-ui/core';
+import React , {useState} from 'react';
+import {ListItemText, ListItem, Button, TextField} from '@material-ui/core';
 import './Task.css';
 import db from '../firebase'
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
@@ -24,6 +24,8 @@ const useStyles = makeStyles((theme) => ({
 
 
 const Task = (props) => {
+
+  const [input, setInput] = useState('');
 
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
@@ -73,9 +75,13 @@ const Task = (props) => {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <h2 id="transition-modal-title">Transition modal</h2>
-            <p id="transition-modal-description">react-transition-group animates me.</p>
-          </div>
+            <h2 id="transition-modal-title">Update your Task</h2>
+            <p id="transition-modal-description"><TextField 
+             value={input}
+             placeholder={props.task.task}
+             onChange={event => setInput(event.target.value)} /></p>
+            <Button variant='contained'>UPDATE</Button>
+        </div>
         </Fade>
       </Modal>
     </div>

@@ -7,13 +7,13 @@ This project is integrated with firebase realtime database
 
 This project is meant to perform all CRUD OPERATIONS:
 
-##CREATE
+#CREATE
 
-##READ
+#READ
 
-##UPDATE
+#UPDATE
 
-##DELETE
+#DELETE
 
 Modal feature implemented to update tasks
 

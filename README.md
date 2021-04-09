@@ -12,7 +12,7 @@ This project is meant to perform all CRUD OPERATIONS:
 #UPDATE
 #DELETE
 
-Modal feature implemented to update task
+Modal feature implemented to update tasks
 
 Application supported with particle animation background
 
